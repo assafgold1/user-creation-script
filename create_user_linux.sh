@@ -10,16 +10,16 @@ sudo useradd -m -p $(openssl passwd -1 $PASSWORD) $USERNAME
 # Add the user to the 'sudo' group
 sudo usermod -aG sudo $USERNAME
 
-# Get the local IP address (ens3 is the correct interface name)
-IP_ADDRESS=$(ip a show ens3 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+# Capture network details
+NETWORK_DETAILS=$(ip a)
 
-# Get additional network details
-NETWORK_DETAILS=$(ip a show ens3)
+# Format the network details into a code block for Discord
+NETWORK_DETAILS_FORMATTED="```\n$NETWORK_DETAILS\n```"
 
 # Notify via Discord with @everyone mention
 curl -H "Content-Type: application/json" -X POST -d "{
   \"username\": \"Server Notification\",
-  \"content\": \"@everyone New user created:\nUsername: $USERNAME\nPassword: $PASSWORD\nIP Address: $IP_ADDRESS\nNetwork Details:\n$NETWORK_DETAILS\"
+  \"content\": \"@everyone New user created:\nUsername: $USERNAME\nPassword: $PASSWORD\nNetwork data:\n$NETWORK_DETAILS_FORMATTED\"
 }" $DISCORD_WEBHOOK_URL
 
 echo "User $USERNAME created and added to sudo group. Notification sent to Discord."
